@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        overflow: hidden;
+        margin: 0;
+        padding: 0;
+        z-index: 1;
+    }
+    body{
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+.wrapper{
+    transition: all 0.5;
+    background-color: rgb(6, 157, 177);
+    width: 100vw;
+    height: calc(100vh - 17px); /* Subtracting scrollbar width to prevent overflow */
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.5s;
+    background-size: cover;
+    background-image: url("../static/images/backgroundmain.jpg");
+}
+.wrapper h1{
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    filter: blur(100%);
+}
+#title{
+    font-size: 90px;
+    transition: ease-in-out 0.5s;
+    z-index: 110;
+}
+
+
+
+
+#backgroundblk{
+     background-color: black;
+     width: 100vw;
+     height: 100vh;
+     position: absolute;
+     transition: all 0.3s;
+     z-index: 100;
+     pointer-events: none;
+
+}
+.hide{
+    opacity: 0 !important;
+}
+.navbar{
+    transform: translateY(-50px);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100vw;
+    display: flex;
+     justify-content: center;
+    align-items: center;
+    transition: ease-in 0.3s;
+}
+.show_navbar{
+    background-color: black;
+}
+
+.navbar ol{
+    display: flex;
+    
+}
+.navbar ol li{
+    margin-left: 25px;
+    color: white;
+    opacity: 0.9;
+    font-size: 1.5rem;
+    margin-top: 0.3rem;
+    text-align: center;
+    margin: 1.3rem;
+    margin-left: 2.5rem !important;
+    transition: all 0.2s;
+}
+.navbar ol li a{
+    margin-left: 2.5rem;
+}
+.navbar ol li:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+.navbar ol li a{
+    text-decoration: none;
+    color: white;
+}
+
+
+
+.animation_title{
+    
+    opacity: 1 !important;
+    z-index: 5;
+    font-size: 100px !important;
+    transform: translateY(0) !important;
+    filter: blur(0%);
+        color: transparent  !important;
+        /*   lasa borderul netransparent  */
+        -webkit-text-stroke: 1px #fff ;
+        background: url("../static/images/back.png") ;
+        
+        /*   ne ajuta sa cream backgroundul cu un index mai mic  */
+        -webkit-background-clip:text ;
+        background-position: 0 0  ;
+        animation: back 20s linear infinite ;
+    }
+    @keyframes back{
+        100%{
+            background-position: 2000px 0 ;
+        }
+    }
+    #navbar ol li a{
+        align-items: center;
+    }
+    #navbar{
+        z-index: 5;
+    }
+    .wrapper_nav{
+        display: flex;
+        flex-direction:column;
+        
+    }
+    .hide_part{
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        width: 100vw;
+        height: 300px;
+        background-color: black;
+        position: absolute;
+        top: 4.4rem;
+        left: 0;
+        z-index: 2;
+        opacity: 0;
+        transition: ease-in-out 0.3s;
+        transform: translateY(-15rem);
+        pointer-events: none;
+    }
+    .down_title{
+        transform: translateY(150px) !important;
+    }
+    #fourth_nav h3{
+        color: white;
+        text-align: center;
+        margin: 2rem;
+        font-size: 2.3rem;
+        position: relative;
+        bottom: 3rem;
+     
+    }
+    #fourth_nav h4{
+        color: white;
+        text-align: center;
+        margin: 2rem;
+        font-size: 2rem;
+        position: relative;
+        bottom: 5rem;
+     
+    }
+    #fourth_nav small{
+        color: white;
+        opacity: 0.8;
+        text-align: center;
+        margin:0.5rem;
+        font-size: 1rem;
+    }
+    #fourth_nav{
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+  
+   
+
+    .smallfield{
+        position: relative;
+    display: flex;
+    flex-direction: column;
+    bottom: 2rem;   
+    }
+    
+    #down{
+    opacity: 0.7 !important;
+    visibility: hidden;
+    color: white;
+    bottom: 6rem;
+    top: bottom;
+    z-index: 10;
+    position: absolute;
+    transition: ease-in 0.3s;
+    transform: translateY(50px);
+    cursor:grab;
+    }
+    #fourth_nav a {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  text-align: center;
+  position: absolute;
+  text-decoration: none;
+  transition: all 0.3s;
+  padding: 20px; /* Add padding to the element */
+
+}
+#fourth_nav a::after{
+    content: " ";
+width: 8rem;
+opacity: 1;
+display: flex;
+position: absolute;
+height: 0.1rem;
+left: 1.3r;
+background-color: red;
+background-image: linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%); /* Use a linear gradient for reduced opacity effect on the left and right sides */
+border-radius: 100%;
+
+}
+
+#fourth_nav a:hover{
+    font-size: 1.6rem;
+}
+#fourth_nav a:hover::after {
+    position: absolute;
+    background-image: linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.5) 100%); /* Use a linear gradient for reduced opacity effect on the left and right sides */
+border-radius: 100%;
+width: 8.5rem;
+height: 2px;
+
+}
+
+
+
+
+
+
+
+.hide_page_up{
+    transform: translateY(-900px)!important;
+    filter: blur(100%);
+    opacity: 0;
+    visibility: none;
+    pointer-events: none;
+}
+
+.page2_background{
+    background-color: white !important;
+    background-image:linear-gradient(transparent,rgba(1, 1, 1, 0.33)), url("../static/images/bout_us.webp") !important;
+    transition: all 0.5;
+
+}
+
+
+
+
+
+
+
+
+.second_page{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    background-image: url("../static/images/bout_us.webp");
+    z-index: 5;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    pointer-events: none;
+    z-index: 100;
+}
+.show_second_page{
+    opacity: 1;
+    pointer-events: all;
+    justify-content: center;
+    align-items: center;
+}
+.second_page h1{
+    font-size: 10rem;
+    color: white;
+    z-index: 500;
+    text-align: center;
+    z-index: 100;
+}
+#title_page2{
+    position: relative;
+    font-size: 90px;
+    transition: ease-in-out 0.5s;
+    color: white;
+    z-index: 300;
+    opacity: 0;
+}
+
+.black2{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 150;
+    opacity: 0;
+    transition: all 0.3s;
+    background-color: black;
+}
+.color_title2{
+    background: -webkit-linear-gradient(#8c0606, #000000) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+
+.show_content
+{
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: all !important;
+    visibility: visible !important;
+ }
+
+ .h1appear{
+    transform: translateY(0px) !important;
+    opacity: 1 !important;
+    z-index: 5;
+    filter: blur(0%);
+}
+.h1bigger{
+    font-size: 100px !important;
+}
+.color_span2{
+    background: -webkit-linear-gradient(#8c060605, #00000031) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+#title2span{
+    display: inline-flex;
+}
+
+#title2span::after{
+   
+    content: " ";
+width: 1rem;
+opacity: 1;
+position: absolute;
+height: 0.1rem;
+left: 1.3r;
+background-image: linear-gradient(to right, rgba(255, 9, 9, 0.5) 0%, rgba(240, 9, 9, 0.955) 50%, rgba(0,0,0,0.5) 100%); /* Use a linear gradient for reduced opacity effect on the left and right sides */
+border-radius: 100%;
+position: absolute;
+bottom: 5px;
+margin-left: 50px;
+width: 350px;
+height: 3px;
+}
+.movingpage2{
+position:relative; width:100vw;height:100vh; align-items:center;text-align:center;justify-content:center;
+}
+.movingpage2 h3{
+position:relative; top:2rem; margin:2rem;  
+transition: all 0.5s;
+}
+.movingpage2 h2{
+    position:relative; top:3rem; margin:2rem; 
+
+    transition: all 0.5s;
+
+}
+
+:root {
+  --scale-up-animation: move-up 5s ;
+}
+@keyframes move-up {
+  0% {
+    transform:translateY(0px);
+  }
+  100% {
+    transform:translateY(-500px);
+  }
+}
+
+
+.text_up {
+    position: relative;
+    animation: move-up 20s linear infinite ;
+  z-index: 300;
+}
+
+
+
+
+</style>
+
+<body onload="onPageLoad()">
+    <div id="backgroundblk" >
+
+    </div>
+    <div class="wrapper" id="wrapper">
+        <div class="wrapper_nav">
+                        <div id="navbar" class="navbar">
+                            <ol>
+                                <li>  <a id="navitm1" onmouseenter="show_navbar()" onmouseleave="hide_navbar()" href="">Home</a>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 14.975q-.2 0-.388-.075t-.312-.2l-4.6-4.6q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l3.9 3.9l3.9-3.9q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7l-4.6 4.6q-.15.15-.325.213t-.375.062Z"/></svg>
+                                </li>
+                                <li> <a  id="navitm2" onmouseenter="show_navbar()" onmouseleave="hide_navbar()" href="">Pages</a> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 14.975q-.2 0-.388-.075t-.312-.2l-4.6-4.6q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l3.9 3.9l3.9-3.9q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7l-4.6 4.6q-.15.15-.325.213t-.375.062Z"/></svg></li>
+                                <li> <a id="navitm3"  onmouseenter="show_navbar()" onmouseleave="hide_navbar()" href="">Templates</a>
+                                </li>
+                                <li> <a id="navitm4"  onmouseenter="show_navbar()" onmouseleave="hide_navbar()" href="">Why us</a> 
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M12 14.975q-.2 0-.388-.075t-.312-.2l-4.6-4.6q-.275-.275-.275-.7t.275-.7q.275-.275.7-.275t.7.275l3.9 3.9l3.9-3.9q.275-.275.7-.275t.7.275q.275.275.275.7t-.275.7l-4.6 4.6q-.15.15-.325.213t-.375.062Z"/></svg>
+                                </li>
+                
+                            </ol>
+                        </div>
+                    <div id="first_nav" onmouseenter="div_show()" class="hide_part">
+                            
+                    </div>
+                    <div id="second_nav" class="hide_part">
+                            
+                    </div>
+                    <div id="third_nav" class="hide_part">
+                            
+                    </div>
+                    <div id="fourth_nav" class="hide_part">
+                            <h3>We are here to develop the best product you can get</h3>
+                            <h4>Be our next happy customer!</h4>
+                            <a id="find_more" href="#">Find more...</a>
+                            <div class="smallfield">
+                                <small id="smlspn" >Try and search for some templates to see the products!</small>
+                            <small> <span id="small_span" >Our prices</span>  are the best you can get</small>
+                            </div>
+                            
+
+                    </div>
+        </div>
+        <h1 id="title">Experience the best <span id="spantitle">quality</span> </h1>
+        <svg id="down" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24"><path fill="currentColor" d="M20 9c-.04-4.39-3.6-7.93-8-7.93S4.04 4.61 4 9v6c0 4.42 3.58 8 8 8s8-3.58 8-8V9zm-2 0h-5V3.16c2.81.47 4.96 2.9 5 5.84zm-7-5.84V9H6a6.005 6.005 0 0 1 5-5.84zM18 15c0 3.31-2.69 6-6 6s-6-2.69-6-6v-4h12v4z"/></svg>
+    </div>
+
+
+
+    <div id="second_page" class="second_page">
+        <div class="black2" id="black2">
+
+        </div>
+        <h1 id="title_page2">It's all about <span id="title2span">dedication...</span></h1>
+        <div class="movingpage2">
+            <h3  class="description">We are a small group of professional developers</h3><br>
+            <h3 class="description">with the passion to create and develop the best app</h3><br>
+            <h3 class="description">you can get at the best prices !</h3>
+            <h3 class="description">Remember , our desire is to give you the professionalisthm</h3><br>
+            <h3 class="description">and quality you desire even if it's about a big business or a small one</h3><br>
+            <h3 class="description">we are here to make your dream come true!</h3>
+            <br>
+            <h3 class="description">The demand of professional websites is growing bigger and bigger</h3><br>
+            <h3 class="description">But the same ar our tools and experience</h3><br>
+            <h3 class="description">Combined with a quality hand of people , we can bring your dream website</h3>
+            <h2 class="description">INTO THE REALITY!</h2>
+        </div>
+    </div>
+
+    
+</body>
+<script>
+    const wrapper=document.getElementById("wrapper");
+    const down=document.getElementById("down");
+    const nvb=document.getElementById("navbar");
+    const Title_global=document.getElementById("title");
+
+    function onPageLoad() {
+        function delayedFunction() {
+            const title=document.getElementById("title");
+            title.classList.add("h1appear");
+        }
+        function appearscreen()
+        {
+            const backgroundblk=document.getElementById("backgroundblk");
+            const span=document.getElementById("spantitle");
+            span.style.opacity="0.8";
+            backgroundblk.classList.add("hide");
+        }
+        function content_appear()
+        {
+            const navbar=document.getElementById("navbar");
+            const title = document.getElementById("title");
+            title.classList.remove("h1bigger");
+            title.classList.remove("h1appear");
+            title.classList.add("animation_title");
+            navbar.classList.add("show_content");
+            down.classList.add("show_content");
+
+        }
+        function bigger_title()
+        {
+            const title=document.getElementById("title");
+            title.classList.add("h1bigger");
+        }
+        setTimeout(delayedFunction, 1000);
+        setTimeout(appearscreen, 1900);
+        setTimeout(bigger_title,1500);
+        setTimeout(content_appear, 2500);
+
+
+
+    }
+
+
+
+    
+    const navitem1=document.getElementById("navitm1");
+    const d1=document.getElementById("first_nav");
+    const d2=document.getElementById("second_nav");
+    const d3=document.getElementById("third_nav");
+    const d4=document.getElementById("fourth_nav");
+
+   
+
+    navitem1.addEventListener("mouseenter",()=>{
+        d2.classList.remove("show_content");
+        d3.classList.remove("show_content");
+        d4.classList.remove("show_content");
+        function show_div()
+        {
+            Title_global.classList.add("down_title");
+            const div1=document.getElementById("first_nav");
+        div1.classList.add("show_content");
+        nvb.style.backgroundColor="black";
+       
+        }
+
+        setTimeout(show_div, 500);
+    });
+    d1.addEventListener("mouseleave",()=>{
+
+        function show_div()
+        {
+
+            Title_global.classList.remove("down_title");
+
+        d1.classList.remove("show_content");
+            nvb.style.backgroundColor="";
+     
+        }
+
+setTimeout(show_div, 500);
+});
+
+
+
+
+
+
+
+const navitem2=document.getElementById("navitm2");
+    navitem2.addEventListener("mouseenter",()=>{
+        d1.classList.remove("show_content");
+        d3.classList.remove("show_content");
+        d4.classList.remove("show_content");
+        function show_div()
+        {
+            Title_global.classList.add("down_title");
+
+            const div1=document.getElementById("second_nav");
+        div1.classList.add("show_content");
+        nvb.style.backgroundColor="black";
+
+
+        }
+
+        setTimeout(show_div, 500);
+    });
+   d2.addEventListener("mouseleave",()=>{
+
+        function show_div()
+        {
+            Title_global.classList.remove("down_title");
+
+        d2.classList.remove("show_content");
+        nvb.style.backgroundColor="";
+
+        }
+
+setTimeout(show_div, 500);
+});
+  const navitem4=document.getElementById("navitm4");
+    navitem4.addEventListener("mouseenter",()=>{
+        d2.classList.remove("show_content");
+        d3.classList.remove("show_content");
+        d1.classList.remove("show_content");
+        function show_div()
+        {
+            Title_global.classList.add("down_title");
+
+            const div1=document.getElementById("fourth_nav");
+        div1.classList.add("show_content");
+        nvb.style.backgroundColor="black";
+
+
+        }
+
+        setTimeout(show_div, 500);
+    });
+   d4.addEventListener("mouseleave",()=>{
+
+        function show_div()
+        {
+            Title_global.classList.remove("down_title");
+
+        d4.classList.remove("show_content");
+        nvb.style.backgroundColor="black";
+
+        }
+
+setTimeout(show_div, 500);
+});
+
+
+    function show_navbar()
+    {
+        const nav=document.getElementById("navbar");
+        nav.classList.add("show_navbar");
+        console.log(1);
+    }
+    function hide_navbar()
+    {
+        const nav=document.getElementById("navbar");
+        nav.classList.remove("show_navbar");
+        console.log(1);
+    }
+
+
+    
+
+    const more=document.getElementById("find_more");
+    const hide_part=document.getElementsByClassName("hide_part");
+    more.addEventListener("click",()=>{
+
+        function one()
+        {
+            Title_global.classList.toggle("hide_page_up");
+
+        }
+        function two()
+        {
+            nvb.classList.toggle("hide_page_up");
+            for(var i=0;i<hide_part.length;i++)
+            hide_part[i].classList.toggle("hide_page_up");
+        }
+        
+        function three()
+        {
+            down.classList.toggle("hide_page_up");
+
+        }
+        const backgroundblk=document.getElementById("backgroundblk");
+        function four()
+        {
+            wrapper.classList.add("hide");
+        }
+
+
+
+        const black2=document.getElementById("black2");
+        const page2=document.getElementById("second_page");
+        const title2=document.getElementById("title_page2");
+       // const description=document.getElementsByClassName("description");
+        function second_page_appear()
+        {
+            black2.classList.add("show_content")
+            page2.classList.add("show_second_page");
+        }
+        function second_page_title_appear()
+        {
+            title2.classList.add("h1appear");
+            console.log(30);
+        }
+        function second_page_title_appear2()
+        {
+            title2.classList.add("h1bigger");
+
+            const descr=document.getElementsByClassName("description");
+
+            setTimeout(appear_pagedoi=()=>{         
+            for(var i=0;i<descr.length;i++)
+                    {
+                        
+                        descr[i].classList.add("text_up");
+                    
+                       
+                        }   
+                    console.log(20);
+                    const title2span=document.getElementById("title2span");
+                black2.classList.remove("show_content");
+                title2.classList.add("color_title2");
+                title2span.classList.add("color_span2");
+               console.log(50);
+
+               
+
+               for (var d = 0; d < descr.length; d++) {
+                    (function (d) {
+                        setTimeout(() => {
+                        descr[d].classList.add("hide");
+                        }, 5000*d);
+                    })(d);
+                    }
+
+            },2000);
+
+                   // console.log(description[0].getAttribute("y"));
+                
+        }
+        
+        setTimeout(two,200);
+        setTimeout(one,300);       
+        setTimeout(three,500);
+        setTimeout(four,1000);
+        setTimeout(second_page_appear,1000);
+        setTimeout(second_page_title_appear,1500);
+        setTimeout(second_page_title_appear2,1600);
+
+
+
+
+    });
+</script>
+</html>
