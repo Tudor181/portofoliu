@@ -1,4 +1,4 @@
-# portofoliu
+# Portofoliu
 Impreuna cu un coleg, am dorit a crea un site de prezentare a portofoliului nostru, care va fi completat pe parcurs cu anumite proiecte pe care le vom dezvolta care să ne reprezinte, atât acum cât și pe viitor.
 Eu am implementat partea de front-end, iar el partea de back-end.
 Am folosit framework-ul Django pentru backend, respectiv Python.
